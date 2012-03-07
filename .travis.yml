@@ -7,4 +7,4 @@ before_script:
   - npm install connect
   - sudo node test/js/server.js ../../ 80 &
   - sleep 5
-script: phantomjs test/qunit/run-qunit.js "http://localhost:80/test/index.html?filter=\!caniuse.com"
+script: phantomjs test/qunit/run-qunit.js "http://localhost:80/test/index.html?filter=%21caniuse.com"
