@@ -68,6 +68,10 @@ page.open(phantom.args[0], function(status){
                 } catch (e) { }
                 return 10000;
             });
+			console.log("Any tests fail: " + failedNum);
+			console.log("======================================");
+			console.log(page.content);
+			console.log("======================================");
             phantom.exit((parseInt(failedNum, 10) > 0) ? 1 : 0);
         });
     }
