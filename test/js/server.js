@@ -4,8 +4,7 @@ var connect = require('connect'),
 	port = args[1] || '80';	
 
 var server = connect.createServer(
-    connect.logger()
-  , connect.static(__dirname + folder)
+    connect.static(__dirname + folder)
 ).listen(port);
 
 console.log("Server started on port %s in %s", port, folder);
