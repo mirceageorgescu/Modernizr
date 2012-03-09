@@ -22,13 +22,9 @@ function waitFor(testFx, onReady, timeOutMillis) {
                 if(!condition) {
                     // If condition still not fulfilled (timeout but condition is 'false')
                     console.log("'waitFor()' timeout");
-					console.log("======================================");
-					console.log(page.content);
-					console.log("======================================");
                     phantom.exit(1);
                 } else {
                     // Condition fulfilled (timeout and/or condition is 'true')
-                    console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
                     typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
                     clearInterval(interval); //< Stop this interval
                 }
@@ -65,16 +61,11 @@ page.open(phantom.args[0], function(status){
         }, function(){
             var failedNum = page.evaluate(function(){
                 var el = document.getElementById('qunit-testresult');
-                console.log(el.innerText);
                 try {
                     return el.getElementsByClassName('failed')[0].innerHTML;
                 } catch (e) { }
                 return 10000;
             });
-			console.log("Any tests fail: " + failedNum);
-			console.log("======================================");
-			console.log(page.content);
-			console.log("======================================");
             phantom.exit((parseInt(failedNum, 10) > 0) ? 1 : 0);
         });
     }
